@@ -4,7 +4,7 @@ How to update the table summary value when the cell in edit mode in WPF DataGrid
 
 # About the sample
 
-In SfDataGrid, you can update the summary values when you are changing the value by overriding OnInitializeEditElementmathod and UiElement.ValueChanging event in GridNumericCellRenderer.
+In [WPF DataGrid](https://www.syncfusion.com/wpf-ui-controls/datagrid) (SfDataGrid), you can update the summary values when you are changing the value by overriding OnInitializeEditElementmathod and UiElement.ValueChanging event in GridNumericCellRenderer.
 
 ```c#
 dataGrid.LiveDataUpdateMode = LiveDataUpdateMode.AllowSummaryUpdate;
