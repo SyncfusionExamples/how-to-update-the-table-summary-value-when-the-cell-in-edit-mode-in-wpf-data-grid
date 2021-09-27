@@ -61,6 +61,9 @@ internal class CustomizedGridCellNumericRenderer : GridCellNumericRenderer
     }
 }
 ```
+
+KB article - [How to update the table summary value when the cell in edit mode in WPF DataGrid (SfDataGrid)?](https://www.syncfusion.com/kb/12036/how-to-update-the-table-summary-value-when-the-cell-in-edit-mode-in-wpf-datagrid-sfdatagrid)
+
 ## Requirements to run the demo
  Visual Studio 2015 and above versions
 
