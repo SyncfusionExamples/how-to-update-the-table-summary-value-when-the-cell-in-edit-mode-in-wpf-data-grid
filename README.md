@@ -1,19 +1,22 @@
-# How to update the table summary value when the cell in edit mode in WPF DataGrid (SfDataGrid) ?
+# How to Update the Table Summary Value When the Cell in Edit Mode in WPF DataGrid?
 
-How to update the table summary value when the cell in edit mode in WPF DataGrid (SfDataGrid) ?
+This sample illustrates how to update the table summary value when the cell in edit mode in [WPF DataGrid](https://www.syncfusion.com/wpf-controls/datagrid) (SfDataGrid).
 
-# About the sample
+In `DataGrid`, you can update the summary values when you are changing the value by overriding `OnInitializeEditElementmathod` and `UiElement.ValueChanging` event in [GridNumericCellRenderer](https://help.syncfusion.com/cr/wpf/Syncfusion.UI.Xaml.Grid.Cells.GridCellNumericRenderer.html).
 
-In [WPF DataGrid](https://www.syncfusion.com/wpf-ui-controls/datagrid) (SfDataGrid), you can update the summary values when you are changing the value by overriding OnInitializeEditElementmathod and UiElement.ValueChanging event in GridNumericCellRenderer.
-
+#### C#
 ```c#
 dataGrid.LiveDataUpdateMode = LiveDataUpdateMode.AllowSummaryUpdate;
+
 this.dataGrid.CellRenderers.Remove("Numeric");
 this.dataGrid.CellRenderers.Add("Numeric", new CustomizedGridCellNumericRenderer(dataGrid));
+
 internal class CustomizedGridCellNumericRenderer : GridCellNumericRenderer
 {
     RowColumnIndex RowColumnIndex;
+
     SfDataGrid DataGrid { get; set; }
+
     string newvalue = null;
 
     public CustomizedGridCellNumericRenderer(SfDataGrid dataGrid)
@@ -41,15 +44,19 @@ internal class CustomizedGridCellNumericRenderer : GridCellNumericRenderer
         columnIndex = this.DataGrid.ResolveToGridVisibleColumnIndex(columnIndex);
         if (columnIndex < 0)
             return;
+
         var mappingName = DataGrid.Columns[columnIndex].MappingName;
         var recordIndex = this.DataGrid.ResolveToRecordIndex(rowIndex);
+
         if (recordIndex < 0)
             return;
+
         if (DataGrid.View.TopLevelGroup != null)
         {
             var record = DataGrid.View.TopLevelGroup.DisplayElements[recordIndex];
             if (!record.IsRecords)
                 return;
+
             var data = (record as RecordEntry).Data;
             data.GetType().GetProperty(mappingName).SetValue(data, (int.Parse(editEelementText)));
         }
@@ -62,8 +69,7 @@ internal class CustomizedGridCellNumericRenderer : GridCellNumericRenderer
 }
 ```
 
-KB article - [How to update the table summary value when the cell in edit mode in WPF DataGrid (SfDataGrid)?](https://www.syncfusion.com/kb/12036/how-to-update-the-table-summary-value-when-the-cell-in-edit-mode-in-wpf-datagrid-sfdatagrid)
+![DataGrid displays the updated table summary upon cell editing](TableSummaryUpdate.gif)
 
 ## Requirements to run the demo
- Visual Studio 2015 and above versions
-
+ Visual Studio 2015 and above version.
